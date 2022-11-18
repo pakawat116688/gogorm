@@ -1,0 +1,9 @@
+app:
+  port: 8000
+
+db:
+  driver: "sqlite3"
+  file: "./user.db"
+
+key:
+  jwt: "secretkey"
