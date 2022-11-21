@@ -35,7 +35,7 @@ func (s userService) SignUpUser(userReq UserRequire) (*UserResponse, error) {
 		return nil, err
 	}
 
-	userRepo := repository.CreateUser{
+	userRepo := repository.User{
 		Username: userReq.Username,
 		Password: string(password),
 	}
@@ -111,7 +111,7 @@ func (s userService) GetOneUser(uname string) (*UserResponse, error) {
 
 	user, err := s.userSrv.GetOneUser(uname)
 	if err != nil {
-		return nil, nil
+		return nil, err
 	}
 
 	userResponse := UserResponse{

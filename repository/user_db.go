@@ -10,15 +10,26 @@ func NewUserDB(userdb *gorm.DB) UserRepository  {
 	return UserDB{userdb: userdb}
 }
 
+func (u User) TableName() string  {
+	return "User"
+}
+
 func (r UserDB) CreateUserTable() error {
-	err := r.userdb.AutoMigrate(User{})
-	if err != nil {
-		return err
+
+	query := `CREATE TABLE "User" (
+		"uid"	INTEGER,
+		"username"	text UNIQUE,
+		"password"	text,
+		PRIMARY KEY("uid" AUTOINCREMENT)
+	);`
+	tx := r.userdb.Raw(query).Scan(&User{})
+	if tx.Error != nil {
+		return tx.Error
 	}
 	return nil
 }
 
-func (r UserDB) InsertUserData(user CreateUser) (*User, error) {
+func (r UserDB) InsertUserData(user User) (*User, error) {
 	tx := r.userdb.Create(&user)
 	if tx.Error != nil {
 		return nil, tx.Error
@@ -33,7 +44,7 @@ func (r UserDB) InsertUserData(user CreateUser) (*User, error) {
 
 func (r UserDB) GetAllUser() ([]User, error)  {
 	userResponse := []User{}
-	tx := r.userdb.Find(&userResponse)
+	tx := r.userdb.Order("uid").Find(&userResponse)
 	if tx.Error != nil {
 		return nil, tx.Error
 	}
