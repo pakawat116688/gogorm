@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gogorm-deployment
+  namespace: test-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gogorm
+  template:
+    metadata:
+      labels:
+        app: gogorm
+    spec:
+      containers:
+      - name: gogorm
+        image: gogorm:dev
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000

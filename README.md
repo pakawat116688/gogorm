@@ -1,5 +1,14 @@
 # gogorm
+    สามารถ go run ได้ตามปกติ หรือทำการ Deploy ลงบน kubenetes โดยให้ทำการสร้าง Docker Image ขึ้นมาก่อนและนำไปใส่ใร kubernetes
 
+# Postman
+- localhost:30003/signup + Body {"Username": "","Password": ""} Method POST
+- localhost:30003/signin + Body {"Username": "","Password": ""} Method POST
+- localhost:30003/user/users Method GET
+- localhost:30003/userone/:username Method GET
+
+
+# library
 - go get gorm.io/gorm
 - go get gorm.io/driver/sqlite
 - go get github.com/spf13/viper
