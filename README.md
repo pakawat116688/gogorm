@@ -1,5 +1,6 @@
 # gogorm
-    สามารถ go run ได้ตามปกติ หรือทำการ Deploy ลงบน kubenetes โดยให้ทำการสร้าง Docker Image ขึ้นมาก่อนและนำไปใส่ใร kubernetes
+    สามารถ go run ได้ตามปกติ หรือทำการ Deploy ลงบน kubenetes 
+    โดยให้ทำการสร้าง Docker Image ขึ้นมาก่อนและนำไปใส่ใร kubernetes
 
 # Postman
 - localhost:30003/signup + Body {"Username": "","Password": ""} Method POST
